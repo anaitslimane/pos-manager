@@ -1,0 +1,188 @@
+﻿<div id="saleoperation-update" ng-controller="PosSaleOperationsController as SaleOperationsCtx">
+    <div class="modal-header">
+        <h3 translate="{{modalOptions.headerText}}"></h3>
+        <div ng-show="SaleOperationsCtx.responseModel.StatusCode < 1 && actionCompleted == true" class="has-error">
+            <div class="help-block alert-link">
+                <span class="glyphicon glyphicon-remove-circle"></span>
+                <span>{{"saleoperations.ERROR_UPDATE_SALEOPERATION" | translate}}</span>
+                <div>{{SaleOperationsCtx.responseModel.ApiStatusPlainText}}</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-body">
+        <form class="form-horizontal" name="update-saleOperation-form">
+            <input type="hidden" ng-model="SaleOperationsCtx.currentSaleOperation.Id" class="form-control" />
+            
+            <div class="form-group">
+                <label for="Customer" class="control-label col-xs-5">{{"saleoperations.LABEL_CUSTOMER_NAME" | translate}}:</label>
+                <div class="col-xs-7">
+                    <p class="form-control-static">
+                        {{SaleOperationsCtx.currentSaleOperation.Customer.Name}},
+                        {{SaleOperationsCtx.currentSaleOperation.Customer.FamilyName}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="DateTimeAdded" class="control-label col-xs-5">{{"saleoperations.LABEL_DATETIME_ADDED" | translate}}:</label>
+                <div class="col-xs-7">
+                    <p class="form-control-static">
+                        {{SaleOperationsCtx.currentSaleOperation.DateTimeAddedShort}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Amount" class="control-label col-xs-5">{{"saleoperations.LABEL_AMOUNT" | translate}}:</label>
+                <div class="col-xs-7">
+                    <p class="form-control-static">
+                        {{SaleOperationsCtx.currentSaleOperation.Amount | currency}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="SaleOperationsCtx.currentSaleOperation.AddedProducts.length > 0">
+                <label for="User" class="control-label col-xs-5">
+                    {{"cart.LABEL_SELECTED_PRODUCTS" | translate}}:
+                </label>
+                <div class="col-xs-7">
+                    <div class="form-control-static"
+                        ng-model="SaleOperationsCtx.currentSaleOperation.AddedProducts"
+                        ng-show="SaleOperationsCtx.currentSaleOperation.AddedProducts.length > 0"
+                        ng-repeat="product in SaleOperationsCtx.currentSaleOperation.AddedProducts | PosUnique:'Id' as filtered"
+                         >
+                        <div class="badge-wrapper pull-left">
+                            <span class="badge badge-product">
+                                x {{product.Count}}
+                            </span>
+                        </div>
+
+                        <div class="cart-item-name">
+                            {{product.Name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="SaleOperationsCtx.currentSaleOperation.AddedPackages.length > 0">
+                <label for="Packages" class="control-label col-xs-5">
+                    {{"cart.LABEL_SELECTED_PACKAGES" | translate}}:
+                </label>
+
+                <div class="col-xs-7">
+                    <div class="form-control-static"
+                         ng-model="SaleOperationsCtx.currentSaleOperation.AddedPackages"
+                         ng-show="SaleOperationsCtx.currentSaleOperation.AddedPackages.length > 0"
+                         ng-repeat="package in SaleOperationsCtx.currentSaleOperation.AddedPackages | PosUnique:'Id' | orderBy:'Name'">
+                        <div class="badge-wrapper pull-left">
+                            <span class="badge badge-product">
+                                x {{package.Count}}
+                            </span>
+                        </div>
+
+                        <div class="cart-item-name">
+                            {{package.Name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group" ng-show="SaleOperationsCtx.currentSaleOperation.AddedPlans.length > 0">
+                <label for="AddedPlans" class="control-label col-xs-5">
+                    {{"cart.LABEL_SELECTED_PLANS" | translate}}:
+                </label>
+                
+                <div class="col-xs-7">
+                    <div class="form-control-static"
+                         ng-model="SaleOperationsCtx.currentSaleOperation.AddedPlans"
+                         ng-show="SaleOperationsCtx.currentSaleOperation.AddedPlans.length > 0"
+                         ng-repeat="planType in SaleOperationsCtx.currentSaleOperation.AddedPlans | PosUnique:'Id' | orderBy:'Name'"
+                         >
+                        <div class="badge-wrapper pull-left">
+                            <span class="badge badge-product">x 1</span>
+                        </div>
+
+                        <div class="cart-item-name">
+                            {{planType.Name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="SaleOperationsCtx.currentSaleOperation.BonusOfferedProducts.length > 0">
+                <label for="User" class="control-label col-xs-5">
+                    {{"cart.LABEL_SELECTED_OFFERED_PRODUCTS" | translate}}:
+                </label>
+                <div class="col-xs-7">
+                    <div class="form-control-static"
+                         ng-model="SaleOperationsCtx.currentSaleOperation.BonusOfferedProducts"
+                         ng-show="SaleOperationsCtx.currentSaleOperation.BonusOfferedProducts.length > 0"
+                         ng-repeat="bonus in SaleOperationsCtx.currentSaleOperation.BonusOfferedProducts | PosUnique:'ProductName' as filtered">
+                        <div class="badge-wrapper pull-left">
+                            <span class="badge badge-product">
+                                x {{bonus.Count}}
+                            </span>
+                        </div>
+
+                        <div class="cart-item-name">
+                            {{bonus.ProductName}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="overflow:visible">
+                <label for="IsCanceled" class="control-label col-xs-5">{{"saleoperations.LABEL_ISCANCELED" | translate}}:</label>
+                <div class="col-xs-7">
+                    <label class="pos-toggle">
+                        <input type="checkbox"
+                               ng-model="SaleOperationsCtx.CurrIsCanceled"
+                               ng-disabled="SaleOperationsCtx.currentSaleOperation.IsCanceled"
+                               >
+                        <div class="slider round" 
+                             popover-trigger="mouseenter"
+                             popover-placement="top-right"
+                             uib-popover="{{'saleoperations.LABEL_CANCEL_SALE_OPERATION' | translate}}"
+                             >
+                        </div>
+                    </label>
+                    <ul ng-show="SaleOperationsCtx.currentSaleOperation.errors.IsCanceled && actionCompleted == true" class="help-block">
+                        <li ng-repeat="error in SaleOperationsCtx.currentSaleOperation.errors.IsIsCanceled">{{error}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group" ng-show="SaleOperationsCtx.currentSaleOperation.IsCanceled == true">
+                <label for="DateTimeCanceled" class="control-label col-xs-5">{{"saleoperations.LABEL_DATETIME_CANCELED" | translate}}:</label>
+                <div class="col-xs-7">
+                    <p class="form-control-static">
+                        {{SaleOperationsCtx.currentSaleOperation.DateTimeCanceled}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="User" class="control-label col-xs-5">{{"saleoperations.LABEL_USER_NAME" | translate}}:</label>
+                <div class="col-xs-7">
+                    <p class="form-control-static">
+                        {{SaleOperationsCtx.currentSaleOperation.User.FamilyName}}
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-lg"
+                data-ng-click="SaleOperationsCtx.CancelSaleOperation()"
+                ng-disabled="SaleOperationsCtx.currentSaleOperation.IsCanceled == true"
+                >
+            <span translate="{{modalOptions.actionButtonText}}"></span>
+        </button>
+        <button type="button" class="btn btn-default btn-lg"
+                data-ng-click="modalOptions.close()">
+            <span translate="{{modalOptions.closeButtonText}}"></span>
+        </button>
+    </div>
+    <pos-spinner delay="3000" show="actionInProgress"></pos-spinner>
+</div>

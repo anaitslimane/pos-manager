@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!--Mobile specific meta-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" />
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css" type="text/css" />
+        <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" type="text/css" />
+
+        <link rel="stylesheet" type="text/css" href="css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/cart.css" />
+        <link rel="stylesheet" type="text/css" href="css/custom-navbar.css" />
+        <link rel="stylesheet" type="text/css" href="css/current-user.css" />
+        <link rel="stylesheet" type="text/css" href="css/search-component.css" />
+        <link rel="stylesheet" type="text/css" href="css/customers.css" />
+        <link rel="stylesheet" type="text/css" href="css/language-selector.css" />
+        <link rel="stylesheet" type="text/css" href="css/plans.css" />
+        <link rel="stylesheet" type="text/css" href="css/products.css" />
+        <link rel="stylesheet" type="text/css" href="css/packages.css" />
+        <link rel="stylesheet" type="text/css" href="css/spinner.css" />
+        <link rel="stylesheet" type="text/css" href="css/saleoperation.css" />
+        <link rel="stylesheet" type="text/css" href="css/bonus.css" />
+        <link rel="stylesheet" type="text/css" href="css/toggle.css" />
+        <link rel="stylesheet" type="text/css" href="css/signin.css" />
+
+        <title>POS Manager</title>
+    </head>
+
+    <body id="pos-manager" ng-app="PosManager">
+        <div class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <ng-include src="'templates/common/Header.html'"></ng-include>
+            </div>
+            <a id="back-to-top"></a>
+        </div>
+
+        <div class="container-fluid mainContent" ng-view>
+            <div id="pos-main-container" class="row">
+                <div id="col1" class="col-md-6" ui-view="col1">
+                    
+                </div>
+                <div id="col2" class="col-md-6" ui-view="col2">
+                    <ng-include src="'templates/cart/Cart.html'"></ng-include>
+                </div>
+            </div>
+        </div>
+
+        <script src="bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
+        <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js" type="text/javascript"></script>
+        <script src="bower_components/angular-translate/angular-translate.js" type="text/javascript"></script>
+        <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js" type="text/javascript"></script>
+        <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js" type="text/javascript"></script>
+        <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.js" type="text/javascript"></script>
+        <script src="bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.js" type="text/javascript"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js" type="text/javascript"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap.js" type="text/javascript"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js" type="text/javascript"></script>
+        <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js" type="text/javascript"></script>
+        <script src="bower_components/angular-ui-select/dist/select.js" type="text/javascript"></script>
+        <script src="bower_components/angular-local-storage/dist/angular-local-storage.js" type="text/javascript"></script>
+
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js" type="text/javascript"></script>
+
+        <script src="js/PosUtils.js" type="text/javascript"></script>
+        <script src="js/PosManager.js" type="text/javascript"></script>
+
+        <script src="js/auth/AuthInterceptorFactory.js" type="text/javascript"></script>
+        <script src="js/auth/PosAuthenticationService.js" type="text/javascript"></script>
+        <script src="js/auth/PosLoginController.js" type="text/javascript"></script>
+
+        <script src="js/bonus/PosBonusDataFactory.js" type="text/javascript"></script>
+        <script src="js/bonus/PosBonusService.js" type="text/javascript"></script>
+        <script src="js/bonus/PosBonusController.js" type="text/javascript"></script>
+
+        <script src="js/plan-types/PosPlanTypesDataFactory.js" type="text/javascript"></script>
+        <script src="js/plan-types/PosPlanTypesService.js" type="text/javascript"></script>
+
+        <script src="js/common/controllers/PosNavController.js" type="text/javascript"></script>
+
+        <script src="js/common/filters/PosUniqueFilter.js" type="text/javascript"></script>
+
+        <script src="js/common/factories/HttpInterceptorFactory.js" type="text/javascript"></script>
+
+        <script src="js/common/directives/PosCountriesDirective.js" type="text/javascript"></script>
+        <script src="js/common/directives/PosLanguageSelectorDirective.js" type="text/javascript"></script>
+        <script src="js/common/directives/PosSpinnerDirective.js" type="text/javascript"></script>
+        <script src="js/common/directives/PosCurrentUserDirective.js" type="text/javascript"></script>
+        <script src="js/common/directives/PosBackToTopDirective.js" type="text/javascript"></script>
+        <script src="js/common/directives/PosSearchDirective.js" type="text/javascript"></script>
+
+        <script src="js/common/services/PosGlobalsService.js" type="text/javascript"></script>
+        <script src="js/common/services/PosLocaleService.js" type="text/javascript"></script>
+        <script src="js/common/services/PosModalService.js" type="text/javascript"></script>
+        <script src="js/common/services/PosSessionService.js"></script>
+
+        <script src="js/common/PosApiResponseStatusCode.js" type="text/javascript"></script>
+        <script src="js/common/PosGlobals.js" type="text/javascript"></script>
+        <script src="js/common/PosHttpHelper.js" type="text/javascript"></script>
+
+        <script src="js/cart/PosCartDataFactory.js" type="text/javascript"></script>
+        <script src="js/cart/PosCartService.js" type="text/javascript"></script>
+        <script src="js/cart/PosCartController.js" type="text/javascript"></script>
+        <script src="js/cart/PosShakeDirective.js" type="text/javascript"></script>
+
+        <script src="js/customers/PosCustomersDataFactory.js" type="text/javascript"></script>
+        <script src="js/customers/PosCustomersService.js" type="text/javascript"></script>
+        <script src="js/customers/PosCustomersController.js" type="text/javascript"></script>
+
+        <script src="js/products/PosProductsController.js" type="text/javascript"></script>
+        <script src="js/packages/PosPackagesController.js" type="text/javascript"></script>
+
+        <script src="js/saleoperations/PosSaleOperationsDataFactory.js" type="text/javascript"></script>
+        <script src="js/saleoperations/PosSaleOperationsService.js" type="text/javascript"></script>
+        <script src="js/saleoperations/PosSaleOperationsController.js" type="text/javascript"></script>
+    </body>
+</html>

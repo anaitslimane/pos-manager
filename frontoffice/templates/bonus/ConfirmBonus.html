@@ -1,0 +1,52 @@
+﻿<div id="bonus-type" class="cart-sale" ng-controller="PosBonusController as BonusCtx">
+    <div class="modal-header">
+        <h3 translate="{{modalOptions.headerText}}"></h3>
+    </div>
+    <div class="modal-body">
+        <p class="form-group">
+            <strong>
+                {{"bonus.PHRASE_BONUS_PRESENTATION" | translate}}
+            </strong>
+            <strong class="label label-info">
+                {{BonusCtx.currOfferedProduct.Name}}
+            </strong>
+        </p>
+
+        <div class="form-group">
+            <label for="currSelectedBonusType"
+                   class="control-label"
+                   >
+                {{"bonus.PHRASE_SELECT_BONUS_TYPE" | translate}}
+            </label>
+            <select ng-model="BonusCtx.currSelectedBonusType"
+                    ng-options="BonusType.Name for BonusType in BonusCtx.allBonusTypes track by BonusType.Id"
+                    class="form-control"
+                    >
+                <option value="" style="display:none;">
+                    -- {{"bonus.TITLE_BONUS_TYPE" | translate}} --
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="currBonusReasonText"
+                   class="control-label"
+                   >
+                {{"bonus.PHRASE_WRITE_BONUS_REASON" | translate}} 
+                <span style="color: #999; font-weight: normal;">({{'global.FACULTATIVE' | translate}})</span>
+            </label>
+            <textarea ng-model="BonusCtx.currBonusReasonText"
+                      class="form-control"
+                      ></textarea>
+        </div>        
+    </div>
+    <div class="modal-footer text-center">
+        <button class="btn btn-primary btn-lg"
+                data-ng-click="BonusCtx.AddBonusOfferedToCart(); modalOptions.close();">
+            <span translate="{{modalOptions.actionButtonText}}"></span>
+        </button>
+        <button type="button" class="btn btn-default btn-lg"
+                data-ng-click="modalOptions.close()">
+            <span translate="{{modalOptions.closeButtonText}}"></span>
+        </button>
+    </div>
+</div>

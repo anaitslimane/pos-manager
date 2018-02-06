@@ -1,0 +1,10 @@
+﻿#bonus-type .modal-body
+{
+    padding-left: 5em;
+    padding-right: 5em;
+}
+
+#bonus-type .modal-body strong.label
+{
+    font-size: 100%;
+}

@@ -1,0 +1,32 @@
+﻿#choose-language,
+#choose-language .language-select
+{
+    overflow: hidden;
+}
+
+#choose-language .language-select
+{
+    padding: 5em;
+}
+
+#choose-language.jumbotron,
+#choose-language .language-select
+{
+    margin: 0;
+}
+
+#choose-language .modal-footer
+{
+    text-align: center;
+}
+
+#choose-language button
+{
+    float: none;
+}
+
+@media (max-width: 768px) {
+    #choose-language .language-select {
+        padding: 1em;
+    }
+}

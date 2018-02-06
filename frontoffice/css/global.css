@@ -1,0 +1,539 @@
+﻿html, body
+{
+    background-color: #f7f7f7;
+}
+
+.btn-circle {
+    border-radius: 2em;
+    font-size: 1em;
+    padding: 0;
+    text-align: center;
+    width: 4em;
+}
+
+#pos-manager .mainContent
+{
+    margin-top: 50px;
+}
+
+#pos-manager .readonly-field-container
+{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+#pos-manager .inactive h4
+{
+    color: #999;
+    font-style: italic;
+}
+
+#pos-manager .readonly-field-container .label
+{
+    font-size: 100%;
+    padding: 0.5em;
+}
+
+#pos-manager .readonly-field-container .label-primary
+{
+    font-size: 100%;
+    padding: 0.3em;
+}
+
+#pos-manager .readonly-field-container .readonly-locale
+{
+    font-size: 0.8em;
+}
+
+#pos-manager .readonly-field-container .label-readonly
+{
+    background-color: #454545;
+    padding: 0.5em 0.7em;
+    font-size: 1.2em;
+}
+
+#pos-manager .form-group
+{
+    overflow: hidden;
+}
+
+#pos-manager .plan-date-starts
+{
+    border-bottom: solid 1px #33ee33;
+}
+
+#pos-manager .plan-date-ends
+{
+    border-bottom: solid 1px #ea2001;
+}
+
+#pos-manager .has-error .form-control,
+#pos-manager .has-error .help-block,
+#pos-manager .has-error .control-label,
+#pos-manager .has-error .radio,
+#pos-manager .has-error .checkbox,
+#pos-manager .has-error .radio-inline,
+#pos-manager .has-error .checkbox-inline,
+#pos-manager .has-error.radio label,
+#pos-manager .has-error.checkbox label,
+#pos-manager .has-error.radio-inline label,
+#pos-manager .has-error.checkbox-inline label
+{
+    color: #e32c46;
+    border-color: #e36f89;
+}
+
+#pos-manager .has-error .form-control
+{
+    color: #666666;
+}
+
+#pos-manager .tooltip
+{
+    color: !important #ffffff ;
+    background: !important #000000;
+}
+
+#col2 h2
+{
+    text-align: center;
+}
+ 
+
+.add-on .input-group-btn > .btn 
+{
+    border-left-width:0;
+    left:-2px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* stop the glowing blue shadow */
+.add-on .form-control:focus
+{
+    box-shadow:none;
+    -webkit-box-shadow:none;
+    border-color:#cccccc;
+}
+
+.notification-success .modal-content
+{
+    border-color: #33ff33;
+    color: #33ff33;
+}
+
+#notification-success .glyphicon,
+#notification-failure .glyphicon
+{
+	float: left;
+    margin-right: 0.5em;
+}
+
+.form-group.required .control-label:after 
+{
+    content:"*";
+    color:red;
+    margin-left: 3px;
+}
+
+#login.jumbotron,
+#welcome.jumbotron
+{
+    margin-top: 4em;
+}
+
+#welcome.jumbotron 
+{
+    background: url(/media/imgs/cash-register-icon.png) no-repeat;
+    background-size: 20% 20%;
+    background-position: 50% 55%;
+}
+
+#login.jumbotron h1,
+#welcome.jumbotron h1
+{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1em;
+    text-shadow: -1px -1px 1px #000;
+    color: #767676;
+}
+
+#welcome.jumbotron .welcome-text
+{
+    text-align: center;
+}
+
+#sign-in
+{
+    background-color: #fefefe;
+    padding: 2em 3em;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#sign-in h2
+{
+    margin: 0 0 1em 0;
+    color: #b8b8b8;
+    text-shadow: -1px -1px 1px #757575;
+    position: relative;
+}
+
+#sign-in h2::before,
+#sign-in h2::after 
+{
+  content: "";
+  position: absolute;
+  display: block;
+  top: 1em;
+  width: 50%;
+  height: 1px;
+}
+
+#sign-in h2:before 
+{
+  left: -2em;
+  background: linear-gradient(to left, #ededed 0%, transparent 100%);
+}
+
+#sign-in h2:after 
+{
+  right: 2em;
+  background: linear-gradient(to right, #ededed 0%, transparent 100%);
+}
+
+
+
+#pos-manager .btn-remove
+{
+    background: none;
+    font-size: 1em;
+}
+
+#pos-manager .btn-remove:hover
+{
+    border: solid 1px #ac2925;
+    background-color: #c9302c;
+    color: #ffffff;
+}
+
+#pos-manager .btn-fancy
+{
+    background: none;
+    font-size: 1em;
+    border: solid 1px #efefef;
+}
+
+#pos-manager .btn-fancy:hover
+{
+    border-color: #ababab;
+}
+
+#pos-manager h3
+{
+    margin: 0.5em 0; 
+}
+
+.st-sort-ascent:before
+{
+    content: '\25B2';
+}
+
+.st-sort-descent:before
+{
+    content: '\25BC';
+}
+
+#pos-manager tr
+{
+    position: relative;
+}
+
+#pos-manager .btns-toolbar-wrapper
+{
+    position: absolute;
+    right: 0.5em;
+    top: 0.5em;
+}
+
+#pos-manager .btns-toolbar-wrapper .btn
+{
+    float: none;
+	margin-left: 2px;
+}
+
+#pos-manager td
+{
+    vertical-align: middle;
+    height: 50px;
+}
+
+#pos-manager h2
+{
+    font-size: 2.5em;
+    color: #555;
+    text-shadow: -1px -1px 1px #111111;
+    margin-bottom: 0.5em;
+    margin-top: 0;
+}
+
+#pos-manager .modal-body
+{
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
+
+#pos-manager .modal-header
+{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #212121;
+    color: #ffffff;
+    border-top: solid 1px #666666;
+}
+
+#pos-manager .modal-footer
+{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 63%, #e5e5e5 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#f7f7f7 63%,#e5e5e5 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ffffff 0%,#f7f7f7 63%,#e5e5e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+}
+
+#pos-manager .modal-footer
+{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#pos-manager .table-sortable th:hover
+{
+	cursor: pointer;
+}
+
+.modal-footer.text-center
+{
+	text-align: center;
+}
+
+.modal-footer.text-center .btn.col-lg-4
+{
+	float: none;
+}
+
+#confirm-modal .confirm-message,
+#confirm-modal .confirm-entity-name
+{
+    display: inline-block;
+}
+
+#sign-in
+{
+    background-color: #fefefe;
+    padding: 2em 3em;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#sign-in h2
+{
+    margin: 0 0 1em 0;
+    color: #b8b8b8;
+    text-shadow: -1px -1px 1px #757575;
+    position: relative;
+}
+
+#sign-in h2::before,
+#sign-in h2::after 
+{
+  content: "";
+  position: absolute;
+  display: block;
+  top: 1em;
+  width: 50%;
+  height: 1px;
+}
+
+#sign-in h2:before 
+{
+  left: -2em;
+  background: linear-gradient(to left, #ededed 0%, transparent 100%);
+}
+
+#sign-in h2:after 
+{
+  right: 2em;
+  background: linear-gradient(to right, #ededed 0%, transparent 100%);
+}
+
+#pos-manager .badge-product
+{
+    background-color: #000;
+}
+
+#pos-manager .thead-inverse
+{
+    background-color: #363636;
+    color: white;
+}
+
+@media (min-width: 1200px) {
+    #col2::before,
+    #col2::after {
+        content: "";
+        position: absolute;
+        display: block;
+        left: 1em;
+        width: 1px;
+        height: 50%;
+    }
+
+    #col2:before {
+        top: 2em;
+        background: linear-gradient(to top, #cdcdcd 0%, transparent 100%);
+    }
+
+    #col2:after {
+        bottom: -2em;
+        background: linear-gradient(to bottom, #cdcdcd 0%, transparent 100%);
+    }
+
+        #pos-main-container
+    {
+        padding: 3em;
+        padding-right: 0;
+    }
+
+    #col2
+    {
+        padding: 0 7em;
+    }
+
+    .hide-if-sm-1200{
+        display: block;
+    }
+
+    .hide-if-lg-1200{
+        display: none;
+    }
+        
+    .btn-large-if-lg-1200{
+        font-size: 1.5em;
+        min-height: 3em;
+    }
+
+    #cart-header{
+        min-height: 3em;
+    }
+
+    #pos-manager option 
+    {
+        padding-bottom: 0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        padding-top: 0.5em;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hide-if-lg-1200{
+        display: block;
+    }
+
+    .hide-if-sm-1200{
+        display: none;
+    }
+
+    #pos-manager h2
+    {
+        margin-top: 1em;
+    }
+}
+
+@media (min-width: 768px) {
+    #pos-logo-sm {
+        display: none;
+    }
+
+    #pos-search-component i.glyphicon-search{
+        font-size: 2.5em;
+        top: 15px;
+    }
+
+    .btn-circle {
+        height: 2.5em;
+    }
+}
+
+@media (max-width: 768px) {
+    #pos-manager .popover {
+        display: none !important;
+    }
+
+    #pos-search-component .glyphicon{
+        right: 0;
+    }
+
+    #welcome.jumbotron {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        padding-bottom: 0;
+        background-image: none;
+    }
+
+    #welcome.jumbotron .welcome-text{
+        display: none;
+    }
+
+    #search-term{
+        font-size: 14px;
+    }
+
+    #pos-manager .modal .modal-dialog  .modal-content
+    {
+        font-size: 0.8em;
+    }
+
+    #pos-manager .modal input,
+    #pos-manager .modal option
+    {
+        font-size: 1em;
+    }
+
+    #pos-manager .modal .col-md-6
+    {
+        margin-bottom: 10px;
+    }
+
+    #pos-logo
+    {
+        display: none;
+    }
+    
+    .btn-primary,
+    .btn-default,
+    .btn-info {
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857;
+        margin-bottom: 0;
+        padding: 4px 8px;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+}
+
+/* Faking the globalness of the spinner dring app initialization */
+#col1
+{
+    position: unset;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

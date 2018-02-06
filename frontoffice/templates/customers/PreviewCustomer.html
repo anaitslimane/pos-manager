@@ -1,0 +1,164 @@
+﻿<div id="preview-customer" ng-controller="PosCustomersController as CustomersCtx">
+    <div class="modal-header">
+        <h3 style="text-align: center;" translate="{{modalOptions.headerText}}"></h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="form-group">
+            <span for="PhoneNumber" class="control-label col-xs-2">
+                <i class="fa fa-fw fa-user"></i><!--{{"customers.LABEL_CUSTOMER" | translate}}:-->
+            </span>
+            <div class="col-xs-10">
+                <p class="form-control-static">
+                    {{CustomersCtx.currentCustomer.Name}}
+                    {{CustomersCtx.currentCustomer.FamilyName}},
+                    {{CustomersCtx.currentCustomer.Street}},
+                    {{CustomersCtx.currentCustomer.ZipCode}}
+                    {{CustomersCtx.currentCustomer.City}}
+                </p>
+            </div>
+
+            <span for="PhoneNumber" class="control-label col-xs-2">
+                <i class="fa fa-fw fa-phone"></i>
+            </span>
+            <div class="col-xs-10">
+                <p class="form-control-static">
+                    {{CustomersCtx.currentCustomer.PhoneNumber}}
+                    <span ng-if="!CustomersCtx.currentCustomer.PhoneNumber">{{CustomersCtx.FieldMissingDefault}}</span>
+                </p>
+            </div>
+
+            <span for="Email" class="control-label col-xs-2">
+                <i class="fa fa-fw fa-envelope"></i>
+            </span>
+            <div class="col-xs-10">
+                <p class="form-control-static">
+                    {{CustomersCtx.currentCustomer.Email}}
+                    <span ng-if="!CustomersCtx.currentCustomer.Email">{{CustomersCtx.FieldMissingDefault}}</span>
+                </p>
+            </div>
+		</div>
+
+		<hr />
+
+        <!-- Active Plans -->
+		<div>
+			<h4>
+				{{"customers.LABEL_ACTIVE_PLANS" | translate}}:
+			</h4>
+
+            <div id="plans-list-wrapper"
+                 ng-if="CustomersCtx.currentCustomer.RecentPlans.length">
+
+                <div class="panel panel-default" ng-if="CustomersCtx.currentCustomer.RecentPlans">
+                    <table id="plans-list"
+                           class="table table-bordered table-condensed">
+
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>{{"customers.LABEL_PLAN_NAME" | translate}}</th>
+                                <th>{{"customers.LABEL_PLAN_DATE_CREATED" | translate}}</th>
+                                <th>{{"customers.LABEL_PLAN_DATE_ENDS" | translate}}</th>
+                                <th>{{"customers.LABEL_PLAN_DISCOUNTS" | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="plan in CustomersCtx.currentCustomer.RecentPlans">
+                                <td class="col-xs-2">
+                                    {{plan.PlanType.Name}}
+                                </td>
+                                <td class="col-xs-3">
+                                    <span class="plan-date-starts">{{plan.DateCreated | date: 'fullDate'}}</span>
+                                </td>
+                                <td class="col-xs-3">
+                                    <div ng-if="!plan.IsActive"
+                                         class="badge-wrapper pull-right">
+                                        <span class="badge">
+                                            {{"customers.LABEL_PLAN_EXPIRED" | translate}}
+                                        </span>
+                                    </div>
+                                    <span class="plan-date-ends">{{plan.DateEnds | date: 'fullDate'}}</span>
+                                </td>
+                                <td class="col-xs-8">
+                                    <div class="plan-discounts-list list-group">
+                                        {{plan.RoundsCounter}} {{"customers.LABEL_PLAN_DISCOUNT_UNIT" | translate}} {{plan.PlanType.Product.Name}}
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-8" ng-if="!CustomersCtx.currentCustomer.RecentPlans.length">
+                <span>{{CustomersCtx.FieldMissingDefault}}</span>
+            </div>
+		</div>
+
+        <hr />
+
+        <!-- Bonus -->
+        <div>
+            <h4>
+                {{"customers.LABEL_BONUS" | translate}}:
+            </h4>
+            <ul ng-if="CustomersCtx.currentCustomer.LastBonuses">
+                <li ng-repeat="bonus in CustomersCtx.currentCustomer.LastBonuses">
+                    <span style="border-bottom: 2px solid #2aabd2;">
+                        {{bonus.ProductName}}
+                    </span>
+                    {{"global.ON" | translate}}
+                    {{bonus.Date}},
+                    <strong>{{"global.REASON" | translate}}:</strong>
+                    {{bonus.BonusTypeName}}
+                </li>
+            </ul>
+            <p class="col-xs-8" ng-if="!CustomersCtx.currentCustomer.LastBonuses">
+                <span>{{CustomersCtx.FieldMissingDefault}}</span>
+            </p>
+        </div>
+
+        <hr />
+
+        <!-- History Plans -->
+        <div>
+            <h4>
+                {{"customers.LABEL_RECENT_SUBSCRIPTIONS" | translate}}:
+            </h4>
+
+            <div id="plans-list-wrapper"
+                 ng-if="CustomersCtx.currentCustomer.PlansSinceLastBonus.length">
+
+                <div class="panel panel-default">
+                    <table id="plans-list" class="table table-bordered table-condensed">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>{{"customers.LABEL_NAME_OF_PLAN" | translate}}</th>
+                                <th>{{"customers.LABEL_PLANS_SINCE_LAST_BONUS" | translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="plan in CustomersCtx.currentCustomer.PlansSinceLastBonus">
+                                <td class="col-xs-6">
+                                    {{plan.Name}}
+                                </td>
+                                
+                                <td class="col-xs-6">
+                                    {{plan.Count}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-8" ng-if="!CustomersCtx.currentCustomer.PlansSinceLastBonus.length">
+                <span>{{CustomersCtx.FieldMissingDefault}}</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer text-center">
+        <button type="button" class="btn-default btn btn-lg col-lg-4"
+                data-ng-click="modalOptions.close()">
+            <span translate="{{modalOptions.closeButtonText}}"></span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿<div id="saleOperations" ng-controller="PosSaleOperationsController as SaleOperationsCtx">
+    <h2>{{"saleoperations.TITLE_SALEOPERATIONS" | translate}}</h2>
+    
+    <table st-table="SaleOperationsCtx.initialSaleOperations" 
+		   st-safe-src="SaleOperationsCtx.allSaleOperations" 
+		   class="table table-sortable table-responsive" 
+		   ng-show="SaleOperationsCtx.allSaleOperations"
+           style="font-size: 0.8em;"
+           >
+        <thead class="thead-inverse">
+            <tr>
+                <th st-sort="IsCanceledStatusIndicator">#</th>
+                <th st-sort="Customer">{{"saleoperations.LABEL_CUSTOMER_NAME" | translate}}</th>
+                <th st-sort="DateTimeAdded">{{"saleoperations.LABEL_DATETIME_ADDED" | translate}}</th>
+                <th st-sort="Amount">{{"saleoperations.LABEL_AMOUNT" | translate}}</th>
+                <th st-sort="IsCanceled" class="hidden-md hidden-sm hidden-xs">{{"saleoperations.LABEL_ISCANCELED" | translate}}</th>
+                <th st-sort="DateTimeCanceled" class="image-label hidden-md hidden-sm hidden-xs">{{"saleoperations.LABEL_DATETIME_CANCELED" | translate}}</th>
+                <th st-sort="User" class="hidden-md hidden-sm hidden-xs">{{"saleoperations.LABEL_USER_NAME" | translate}}</th>
+                <th st-sort="UserActions">{{"saleoperations.LABEL_ACTIONS" | translate}}</th>
+            </tr>
+            <!--<tr>
+                <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text" /></th>
+            </tr>-->
+        </thead>
+        <tbody>
+            <tr ng-repeat="saleOperation in SaleOperationsCtx.allSaleOperations"
+                ng-mouseenter="saleOperationToolbarShowing = true"
+                ng-mouseleave="saleOperationToolbarShowing = false"
+                >
+                <td ng-if="!saleOperation.IsCanceled">
+                    <i class="glyphicon glyphicon-asterisk" style="color: green; font-size: 10pt;"></i>
+                </td>                
+                <td ng-if="saleOperation.IsCanceled">
+                    <i class="glyphicon glyphicon-minus" style="color: red; font-size: 10pt;"></i>
+                </td>
+                
+                <td>{{saleOperation.Customer.Name}}, {{saleOperation.Customer.FamilyName}}</td>
+                
+                <td>{{saleOperation.DateTimeAddedShort}}</td>
+                
+                <td>{{saleOperation.Amount | currency}}</td>
+                                
+                <td class="hidden-md hidden-sm hidden-xs">
+                    <span ng-if="saleOperation.IsCanceled">{{"global.YES" | translate}}</span>
+                    <span ng-if="!saleOperation.IsCanceled">{{"global.NO" | translate}}</span>
+                </td>
+                
+                <td class="hidden-md hidden-sm hidden-xs">
+                    <span ng-if="saleOperation.DateTimeCanceled">{{saleOperation.DateTimeCanceledShort}}</span>
+                    <span ng-if="!saleOperation.DateTimeCanceled">{{SaleOperationsCtx.FieldMissingDefault}}</span>
+                </td>
+
+                <td class="hidden-md hidden-sm hidden-xs">
+                    {{saleOperation.User.FamilyName}}
+                </td>
+                
+                <td>
+                    <button type="button" class="btn btn-sm btn-default"
+                            ng-click="SaleOperationsCtx.OpenEditSaleOperationForm(saleOperation)"
+                            popover-trigger="mouseenter"
+                            popover-placement="top"
+                            uib-popover="{{'global.EDIT' | translate}}">
+                        <i class="glyphicon glyphicon-edit">
+                        </i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="8" class="text-center">
+                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

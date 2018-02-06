@@ -1,0 +1,33 @@
+﻿<div id="pos-search-component">
+    <div class="input-group add-on has-feedback">
+        <div class="input-group-addon search-icon-type-wrapper">
+            <i class="search-input-icon-type fa fa-{{searchInputIconType}}"></i>
+        </div>
+        <input ng-model="SearchTermModel" 
+               search-term="SearchTermModel.value" 
+               class="form-control input-lg" 
+               placeholder="{{searchInputPlaceholderText}}" 
+               name="search-term" 
+               id="search-term" 
+               type="text"
+               autocomplete="off"
+               >
+        <i class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></i>
+    </div>
+    <ul ng-show="CurrentSearchResultsList.length > 0" id="search-results-list">
+        <li class="list-group-item search-result-item"
+            ng-model="CurrentSearchResultsList"
+            curr-search-results-list="CurrentSearchResultsList"
+            ng-click="onClickSelectSearchResult({'searchResult': searchResult, 'event': $event})"
+            ng-mouseenter="CustomersToolbarShowing = true"
+            ng-mouseleave="CustomersToolbarShowing = false"
+            ng-repeat="searchResult in CurrentSearchResultsList track by $index"
+            ng-class="{'sri-highlighted': $index == KeyboardFocusIndex }">
+
+            <span class="search-details">
+                {{formatSearchResult({ 'searchResult': searchResult })}}
+            </span>
+            <input class="cid" type="hidden" ng-model="SelectedCustomerId" value="{{searchResult.Id}}">
+        </li>
+    </ul>
+</div>

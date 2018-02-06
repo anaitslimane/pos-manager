@@ -1,0 +1,33 @@
+﻿<div id="confirm-sale-payment" class="cart-sale">
+    <div class="modal-header">
+        <h3 translate="{{modalOptions.headerText}}"></h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <button id="btn-get-back"
+                class="btn btn-lg btn-fancy"
+                type="button"
+                data-ng-click="modalOptions.close()"
+                popover-trigger="mouseenter"
+                popover-placement="left"
+                uib-popover="{{'cart.BTN_GET_BACK_TO_SALE' | translate}}"
+                style="margin-left: 3px;"
+                ui-sref="customers/home/"
+                back-to-top
+                >
+            <i class="glyphicon glyphicon-share-alt">
+            </i>
+        </button>
+        <span>
+            {{modalOptions.bodyText | translate}}
+        </span>
+    </div>
+    <div class="modal-footer text-center">
+        <button class="btn btn-success btn-lg"
+                data-ng-click="modalOptions.close();"
+                ui-sref="customers/home/"
+                back-to-top
+                >
+            <span translate="{{modalOptions.actionButtonText}}"></span>
+        </button>
+    </div>
+</div>

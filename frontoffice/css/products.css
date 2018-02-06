@@ -1,0 +1,10 @@
+﻿#products .product-item .thumbnail:hover
+{
+    cursor: pointer;
+    border-color: #999;
+}
+
+#products .caption
+{
+    text-align: center;
+}

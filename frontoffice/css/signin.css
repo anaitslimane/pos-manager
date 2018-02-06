@@ -1,0 +1,10 @@
+﻿#sign-in .spinning-items, 
+#sign-in .please-wait {
+    position: absolute;
+}
+
+@media (max-width: 768px) {
+    #sign-in h2 {
+        font-size: 1.4em;
+    }
+}

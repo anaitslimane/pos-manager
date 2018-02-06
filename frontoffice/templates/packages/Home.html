@@ -1,0 +1,27 @@
+﻿<div id="packages" ng-controller="PosPackagesController as PackagesCtx">
+    <h2>{{"packages.TITLE_PACKAGES" | translate}}</h2>
+
+    <div class="hide-if-sm-1200">
+        <div class="col-md-3 package-item" ng-repeat="package in PackagesCtx.allPackages track by package.Id">
+            <div class="thumbnail" ng-click="PackagesCtx.AddToCart(package)">
+                <img ng-src="{{package.ImageUrl?(PackagesCtx.imagesRootUrl + '/' + package.ImageUrl):(PackagesCtx.imagesRootUrl + '/' + PackagesCtx.ImageUrlDefault)}}" />
+                <div class="caption">
+                    <span class="package-name">{{package.Name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="form-horizontal form-inline hide-if-lg-1200" id="form-search">
+        <pos-search ng-model="SearchTermModel"
+                    search-mode="static"
+                    search-property-key="Name"
+                    static-search-list="PackagesCtx.allPackages"
+                    search-input-placeholder-text="{{'packages.SEARCH_PACKAGE' | translate}}"
+                    search-input-icon-type="gift"
+                    format-search-result="PackagesCtx.FormatPackageSearchResult({ 'searchResult': searchResult })"
+                    on-click-select-search-result="PackagesCtx.AddToCart(searchResult)"
+                    >
+        </pos-search>
+    </form>
+</div>

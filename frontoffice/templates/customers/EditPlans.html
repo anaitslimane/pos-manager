@@ -1,0 +1,110 @@
+﻿<div id="plans-edit" ng-controller="PosCartController as CartCtx">
+    <div class="modal-header">
+        <h3 translate="{{modalOptions.headerText}}"></h3>
+    </div>
+
+    <div class="modal-body">
+        <form class="">
+            <div class="form-group">
+                <div for="Customer" class="label-plans-wrapper col-xs-12">
+                    <label class="control-label">{{"customers.LABEL_CUSTOMER" | translate}}: </label>
+                    <span>
+                        {{CartCtx.TempCustomer.Name}}
+                        {{CartCtx.TempCustomer.FamilyName}},
+                        {{CartCtx.TempCustomer.Street}}, 
+                        {{CartCtx.TempCustomer.ZipCode}}
+                        {{CartCtx.TempCustomer.City}}
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div for="Plans" class="label-plans-wrapper col-xs-4">
+                    <p class="label label-info label-plans">{{"customers.LABEL_PLANS" | translate}}:</p>
+                </div>
+
+                <div id="plans-list-wrapper"
+                     class="col-xs-12"
+                     ng-if="CartCtx.TempCustomer.Plans.length">
+
+                    <div class="panel panel-default" ng-if="CartCtx.TempCustomer.Plans">
+                        <table id="plans-list"
+                               class="table table-bordered table-condensed">
+
+                            <thead class="thead-inverse">
+                                <tr>
+                                    <th>{{"customers.LABEL_PLAN_NAME" | translate}}</th>
+                                    <th>{{"customers.LABEL_PLAN_DATE_CREATED" | translate}}</th>
+                                    <th>{{"customers.LABEL_PLAN_DATE_ENDS" | translate}}</th>
+                                    <th>{{"customers.LABEL_PLAN_DISCOUNTS" | translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="plan in CartCtx.TempCustomer.Plans">
+                                    <td class="col-xs-2">
+                                        {{plan.PlanType.Name}}
+                                    </td>
+                                    <td class="col-xs-3">
+                                        <span class="plan-date-starts">{{plan.DateCreated | date: 'fullDate'}}</span>
+                                    </td>
+                                    <td class="col-xs-3">
+                                        <span class="plan-date-ends">{{plan.DateEnds | date: 'fullDate'}}</span>
+                                    </td>
+                                    <td class="col-xs-8">
+                                        <div class="plan-discounts-list list-group">
+                                            {{plan.RoundsCounter}} {{"customers.LABEL_PLAN_DISCOUNT_UNIT" | translate}} {{plan.PlanType.Product.Name}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-8" ng-if="!CartCtx.TempCustomer.Plans.length">
+                    <span>{{CartCtx.FieldMissingDefault}}</span>
+                </div>                
+            </div>
+
+            <div id="add-customer-plan-wrapper"
+                 ng-show="CartCtx.TempCustomer.AvailableToAddPlanTypes.length > 0"
+                 >
+                <button class="btn btn-info" ng-click="ShowPlanTypesSelectBox = true">
+                    <span class="glyphicon glyphicon-plus-sign" style="font-size: 13px; margin-right: 5px;"></span>
+                    {{"customers.BTN_ADD_PLAN" | translate}}
+                </button>
+                <div id="plan-select-list-wrapper"
+                     ng-show="ShowPlanTypesSelectBox">
+
+                    <label for="Plans" class="control-label">{{"customers.LABEL_PLANS" | translate}}</label>
+                    <select class="form-control"
+                            ng-model="CartCtx.SelectedPlanType" 
+                            data-ng-options="planType.Name for planType in CartCtx.TempCustomer.AvailableToAddPlanTypes track by planType.Id">
+                        <option value="" selected disabled hidden>-- {{"customers.LABEL_SELECT_PLAN_TYPE" | translate}} --</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer text-center"
+         >
+        <button ng-show="CartCtx.TempCustomer.AvailableToAddPlanTypes.length > 0 && ShowPlanTypesSelectBox"
+                class="btn btn-primary btn-lg"
+                data-ng-click="CartCtx.AddSelectedPlanTypeToCart()"
+                >
+            <span translate="{{modalOptions.actionButtonText}}"></span>
+        </button>
+        <button ng-show="CartCtx.TempCustomer.AvailableToAddPlanTypes.length > 0"
+                type="button" class="btn btn-default btn-lg"
+                data-ng-click="modalOptions.close()">
+            <span translate="{{modalOptions.closeButtonText}}"></span>
+        </button>
+
+        <button ng-show="!CartCtx.TempCustomer.AvailableToAddPlanTypes.length"
+                type="button"
+                data-ng-click="modalOptions.close()"
+                class="btn-default btn btn-lg col-lg-4"
+                >
+            <span>{{"global.OK" | translate}}</span>
+        </button>
+    </div>
+</div>

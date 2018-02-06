@@ -1,0 +1,51 @@
+﻿#add-customer-plan-wrapper
+{
+    margin-top: 3em;
+    padding-left: 15px;
+}
+
+#plan-select-list-wrapper option
+{
+    padding: 0.5em;
+}
+
+#add-customer-plan-wrapper button
+{
+    margin-bottom: 1em;
+}
+
+#plans-list-wrapper
+{
+	margin-top: 1em;
+}
+
+#customer-edit .label-plans-wrapper,
+#preview-customer .label-plans-wrapper
+{
+	height: 3em;
+}
+
+#customer-edit .label-plans-wrapper .label,
+#preview-customer .label-plans-wrapper .label
+{
+	line-height: 1.5em;
+	font-size: 1.3em;
+}
+
+.plan-discounts-list
+{
+	list-style-type: none;
+	margin: 0;
+}
+
+#customers
+{
+    position: relative;
+}
+
+#add-new-customer-btn-wrapper
+{
+    position: absolute;
+    top: 1em;
+    right: 0;
+}

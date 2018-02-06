@@ -1,0 +1,27 @@
+﻿<div id="products" ng-controller="PosProductsController as ProductsCtx">
+    <h2>{{"products.TITLE_PRODUCTS" | translate}}</h2>
+    
+    <div class="hide-if-sm-1200">
+        <div class="col-md-3 product-item" ng-repeat="product in ProductsCtx.allProducts track by product.Id">
+            <div class="thumbnail" ng-click="ProductsCtx.AddToCart(product)">
+                <img ng-src="{{product.ImageUrl?(ProductsCtx.imagesRootUrl + '/' + product.ImageUrl):(ProductsCtx.imagesRootUrl + '/' + ProductsCtx.ImageUrlDefault)}}" title="{{product.Description}}" />
+                <div class="caption">
+                    <span class="product-name">{{product.Name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <form class="form-horizontal form-inline hide-if-lg-1200" id="form-search">
+        <pos-search ng-model="SearchTermModel"
+                    search-mode="static"
+                    search-property-key="Name"
+                    static-search-list="ProductsCtx.allProducts"
+                    search-input-placeholder-text="{{'products.SEARCH_PRODUCT' | translate}}"
+                    search-input-icon-type="shopping-bag"
+                    format-search-result="ProductsCtx.FormatProductSearchResult({ 'searchResult': searchResult })"
+                    on-click-select-search-result="ProductsCtx.AddToCart(searchResult)"
+                    >
+        </pos-search>
+    </form>
+</div>

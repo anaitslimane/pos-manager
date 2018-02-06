@@ -1,0 +1,34 @@
+﻿<div id="customers" ng-controller="PosCustomersController as CustomersCtx">
+    <h2>{{"customers.TITLE_CUSTOMERS" | translate}}</h2>
+
+    <button id="set-anonymous-customer-btn-wrapper"
+            class="btn btn-default btn-circle"
+            ng-click="CustomersCtx.SetAnonymousCustomer()"
+            popover-trigger="mouseenter"
+            popover-placement="left"
+            uib-popover="{{'customers.BTN_SET_ANONYMOUS_CUSTOMER' | translate}}">
+        <span class="fa fa-user-secret"></span>
+    </button>
+
+    <button id="add-new-customer-btn-wrapper"
+            class="btn btn-info btn-circle"
+            ng-click="CustomersCtx.OpenAddCustomerForm()"
+            popover-trigger="mouseenter"
+			popover-placement="left"
+			uib-popover="{{'customers.BTN_ADD' | translate}}"
+            >
+        <span class="fa fa-user-plus"></span>
+    </button>
+
+    <form class="form-horizontal form-inline">
+        <pos-search ng-model="SearchTermModel"
+                    search-mode="dynamic"
+                    search-url="CustomersCtx.searchUrl"
+                    search-input-icon-type="users"
+                    search-input-placeholder-text="{{'customers.SEARCH_CUSTOMER' | translate}}"
+                    format-search-result="CustomersCtx.FormatCustomerSearchResult({ 'searchResult': searchResult })"
+                    on-click-select-search-result="CustomersCtx.SetCurrentSelectedCustomer({ 'searchResult': searchResult, 'event': event })">
+
+        </pos-search>
+    </form>
+</div>

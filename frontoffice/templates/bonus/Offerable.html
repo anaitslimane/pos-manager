@@ -1,0 +1,29 @@
+﻿<div id="products" ng-controller="PosBonusController as BonusCtx">
+    <h2>{{"products.TITLE_OFFERABLE_PRODUCTS" | translate}}</h2>
+    
+    <div class="hide-if-sm-1200">
+        <div class="col-md-3 product-item" ng-repeat="product in BonusCtx.offerableProducts track by product.Id">
+            <div class="thumbnail"
+                 ng-click="BonusCtx.OpenAddBonusType(product)"
+                 >
+                <img ng-src="{{product.ImageUrl?(BonusCtx.imagesRootUrl + '/' + product.ImageUrl):(BonusCtx.imagesRootUrl + '/' + BonusCtx.ImageUrlDefault)}}" title="{{product.Description}}" />
+                <div class="caption">
+                    <span class="product-name">{{product.Name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <form class="form-horizontal form-inline hide-if-lg-1200" id="form-search">
+        <pos-search ng-model="SearchTermModel"
+                    search-mode="static"
+                    search-property-key="Name"
+                    static-search-list="BonusCtx.offerableProducts"
+                    search-input-placeholder-text="{{'products.SEARCH_PRODUCT' | translate}}"
+                    search-input-icon-type="shopping-bag"
+                    format-search-result="BonusCtx.FormatProductSearchResult({ 'searchResult': searchResult })"
+                    on-click-select-search-result="BonusCtx.OpenAddBonusType(searchResult)"
+                    >
+        </pos-search>
+    </form>
+</div>

@@ -1,0 +1,13 @@
+﻿#saleoperation-update .cart-item-name
+{
+    float: left;
+    padding-top: 2px;
+    margin-left: 5px;
+}
+
+#saleoperation-update label
+{
+    font-style: italic;
+    font-weight: normal; 
+    color: #696969;
+}

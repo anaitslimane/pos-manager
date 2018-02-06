@@ -1,0 +1,55 @@
+﻿<div class="pos-search-clients">
+    <div class="input-group add-on has-feedback">
+        <input ng-model="CustomersSearchTermModel" 
+               search-term="CustomersSearchTermModel.value" 
+               class="form-control input-lg" 
+               placeholder="{{'customers.SEARCH_CUSTOMER' | translate}} .." 
+               name="search-term" 
+               id="search-term" 
+               type="text">
+        <i class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></i>
+    </div>
+    <ul ng-show="CurrentSearchResultsList.length > 0" id="search-results-list">
+        <li class="list-group-item search-result-item"
+            ng-model="CurrentSearchResultsList"
+            curr-search-results-list="CurrentSearchResultsList"
+            ng-click="onClickSelectCustomer({'customer': customer, 'event': $event})"
+            ng-mouseenter="CustomersToolbarShowing = true"
+            ng-mouseleave="CustomersToolbarShowing = false"
+            ng-repeat="customer in CurrentSearchResultsList track by $index">
+			
+			<div class="btns-toolbar-wrapper" ng-show="CustomersToolbarShowing">
+				<button type="button" class="btn btn-info"
+						ng-click="onClickViewBtn({'customer': customer, 'event': $event});"
+						popover-trigger="mouseenter"
+						popover-placement="top"
+						uib-popover="{{'global.VIEW' | translate}}"
+                        stop-event>
+					<i class="glyphicon glyphicon-eye-open">
+					</i>
+				</button>
+				<button type="button" class="btn btn-default"
+						ng-click="onClickEditBtn({'customer': customer, 'event': $event})"
+						popover-trigger="mouseenter"
+						popover-placement="top"
+						uib-popover="{{'global.EDIT' | translate}}"
+                        stop-event>
+					<i class="glyphicon glyphicon-edit">
+					</i>
+				</button>
+                <button type="button" class="btn btn-default"
+                        ng-click="onClickEditPlansBtn({'customer': customer, 'event': $event});"
+                        popover-trigger="mouseenter"
+                        popover-placement="right"
+                        uib-popover="{{'customers.LABEL_ADD_PLANS' | translate}}"
+                        stop-event>
+                    <i class="glyphicon glyphicon-gift">
+                    </i>
+                </button>
+			</div>
+
+            <span class="customer-search-details">{{customer.Name}}, {{customer.FamilyName}}, {{ customer.Street | limitTo: 10 }}{{ customer.Street.length > 10 ? "&hellip;" : ""}}</span>
+            <input class="cid" type="hidden" ng-model="SelectedCustomerId" value="{{customer.Id}}">
+        </li>
+    </ul>
+</div>

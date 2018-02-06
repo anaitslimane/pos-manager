@@ -1,0 +1,10 @@
+﻿#packages .package-item .thumbnail:hover
+{
+    cursor: pointer;
+    border-color: #999;
+}
+
+#packages .caption
+{
+    text-align: center;
+}

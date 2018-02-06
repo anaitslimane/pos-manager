@@ -1,0 +1,67 @@
+﻿.discount-type-model
+{
+    padding: 1em;
+}
+
+.discount-type-model .control-label,
+.discount-type-model .form-control,
+#discount-types-list,
+#plans-list
+{
+    font-size: 0.8em;
+}
+
+#plans-list .badge{
+    font-size: 0.8em;
+    background-color: #e2001a;
+}
+
+#add-new-discount-type-form
+{
+    border-radius: 4px;
+    border: solid 1px #ccc;
+    padding-left: 1em;
+    padding-right: 1em;
+    overflow: hidden;
+    background-color: #fefefe;
+}
+
+#btn-add-discount-type,
+#btn-add-plan-type
+{
+    margin-bottom: 1em;
+}
+
+#btn-confirm-add-discount-type
+{
+    float: right;
+	margin-right: 15px;
+}
+
+#plan-type-add .duration-type-container .col-lg-12,
+#plan-type-add .duration-type-container .col-xs-2,
+#plan-type-add .duration-type-container .col-xs-4
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#plan-type-add .duration-type-container .col-xs-1
+{
+    width: 0;
+}
+
+#plan-type-add .help-block
+{
+    clear: both;
+}
+
+#plan-type-add .control-label 
+{
+	padding: 0;
+}
+
+#btn-delete-discount-type
+{
+    padding: 0.3em 0.7em;
+}

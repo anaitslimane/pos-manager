@@ -1,0 +1,34 @@
+﻿<pos-spinner delay="5000" show="actionInProgress"></pos-spinner>
+<div id="login" class="jumbotron" ng-controller="PosLoginController as LoginCtx">
+    <!--<h1>{{"home.WELCOME_TITLE" | translate}}</h1>-->
+
+    <p class="alert text-center alert-info">
+        <i class="fa fa-info-circle"></i>
+        {{"signin.INFO_MESSAGE"| translate}}
+    </p>
+
+    <form id="sign-in" style="position: relative;">
+        <h2>{{"signin.TITLE"| translate }}</h2>
+        <div class="form-group col-md-6">
+            <label for="Login">{{"signin.LABEL_LOGIN"| translate }}</label>
+            <input type="text" class="form-control" id="login" ng-model="LoginCtx.username" placeholder="{{'signin.PLACEHOLDER_LOGIN' | translate }}">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Password">{{"signin.LABEL_PASSWORD"| translate }}</label>
+            <input type="password" class="form-control" id="password" ng-model="LoginCtx.password" placeholder="{{'signin.PLACEHOLDER_PASSWORD' | translate }}">
+        </div>
+        <div class="col-md-6">
+            <button type="submit"
+                    class="btn btn-primary btn-md btn-block"
+                    ng-click="LoginCtx.Login()"
+                    >
+                {{"signin.BTN_SIGNIN"| translate }}
+            </button>
+        </div>
+    </form>
+    <div class="has-error">
+        <p ng-show="LoginCtx.error" style="text-align:center" class="help-block">
+            {{"signin.ERROR" | translate}}
+        </p>
+    </div>
+</div>

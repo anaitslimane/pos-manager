@@ -1,0 +1,98 @@
+﻿<div id="customer-add"  ng-controller="PosCustomersController as CustomersCtx">
+    <div class="modal-header">
+        <h3 translate="{{modalOptions.headerText}}"></h3>
+        <p ng-show="CustomersCtx.responseModel.StatusCode == -2 && actionCompleted == true" class="has-error">
+			<span class="help-block alert alert-danger">{{"customers.ERROR_ADD_CUSTOMER" | translate}}</span>
+		</p>
+    </div>
+    <div class="modal-body">
+        <form class="">
+            <div class="form-group required">
+                <div class="col-md-6" ng-class="{ 'has-error' : CustomersCtx.currentCustomer.errors.Name && actionCompleted == true}">
+                    <label for="Name" class="control-label">{{"customers.LABEL_NAME" | translate}}</label>
+                    <input type="text" ng-model="CustomersCtx.currentCustomer.Name" class="form-control" placeholder="{{'customers.LABEL_NAME' | translate}}" required />
+                    <ul ng-show="CustomersCtx.currentCustomer.errors.Name && actionCompleted == true" class="help-block">
+                        <li ng-repeat="error in CustomersCtx.currentCustomer.errors.Name">{{error}}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" ng-class="{ 'has-error' : CustomersCtx.currentCustomer.errors.FamilyName && actionCompleted == true}">
+                    <label for="FamilyName" class="control-label">{{"customers.LABEL_FAMILY_NAME" | translate}}</label>
+                    <input type="text" ng-model="CustomersCtx.currentCustomer.FamilyName" class="form-control" placeholder="{{'customers.LABEL_FAMILY_NAME' | translate}}" required />
+                    <ul ng-show="CustomersCtx.currentCustomer.errors.FamilyName && actionCompleted == true" class="help-block">
+                        <li ng-repeat="error in CustomersCtx.currentCustomer.errors.FamilyName">{{error}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group required">
+                <div class="col-md-6" ng-class="{ 'has-error' : CustomersCtx.currentCustomer.errors.Street && actionCompleted == true}">
+                    <label for="Street" class="control-label">{{"customers.LABEL_STREET" | translate}}</label>
+                    <input type="text" ng-model="CustomersCtx.currentCustomer.Street" class="form-control" placeholder="{{'customers.LABEL_STREET' | translate}}" required />
+                    <ul ng-show="CustomersCtx.currentCustomer.errors.Street && actionCompleted == true" class="help-block">
+                        <li ng-repeat="error in CustomersCtx.currentCustomer.errors.Street">{{error}}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" ng-class="{ 'has-error' : CustomersCtx.currentCustomer.errors.ZipCode && actionCompleted == true}">
+                    <label for="ZipCode" class="control-label">{{"customers.LABEL_ZIPCODE" | translate}}</label>
+                    <input type="text" ng-model="CustomersCtx.currentCustomer.ZipCode" class="form-control" placeholder="{{'customers.LABEL_ZIPCODE' | translate}}" required />
+                    <ul ng-show="CustomersCtx.currentCustomer.errors.ZipCode && actionCompleted == true" class="help-block">
+                        <li ng-repeat="error in CustomersCtx.currentCustomer.errors.ZipCode">{{error}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group required">
+                <div class="col-md-6" ng-class="{ 'has-error' : CustomersCtx.currentCustomer.errors.City && actionCompleted == true}">
+                    <label for="City" class="control-label">{{"customers.LABEL_CITY" | translate}}</label>
+                    <input type="text" ng-model="CustomersCtx.currentCustomer.City" class="form-control" placeholder="{{'customers.LABEL_CITY' | translate}}" required />
+                    <ul ng-show="CustomersCtx.currentCustomer.errors.City && actionCompleted == true" class="help-block">
+                        <li ng-repeat="error in CustomersCtx.currentCustomer.errors.City">{{error}}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" ng-class="{ 'has-error' : CustomersCtx.currentCustomer.errors.CountryCode && actionCompleted == true}">
+                    <label for="CountryCode" class="control-label">{{"customers.LABEL_COUNTRY" | translate}}</label>
+                    
+                    <pos-countries ng-model='CustomersCtx.currentCustomer.CountryCode'
+                                   selected-country-code="CustomersCtx.SelectedCountryCode"
+                                   class="form-control"
+                                   required
+                                   >
+                    </pos-countries>
+                    
+                    <ul ng-show="CustomersCtx.currentCustomer.errors.CountryCode && actionCompleted == true" class="help-block">
+                        <li ng-repeat="error in CustomersCtx.currentCustomer.errors.CountryCode">{{error}}</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-6" ng-class="{ 'has-error' : CustomersCtx.currentCustomer.errors.PhoneNumber && actionCompleted == true}">
+                    <label for="PhoneNumber" class="control-label">{{"customers.LABEL_PHONE_NUMBER" | translate}}</label>
+                    <input type="text" ng-model="CustomersCtx.currentCustomer.PhoneNumber" class="form-control" placeholder="{{'global.FACULTATIVE' | translate}}" />
+                    <ul ng-show="CustomersCtx.currentCustomer.errors.PhoneNumber && actionCompleted == true" class="help-block">
+                        <li ng-repeat="error in CustomersCtx.currentCustomer.errors.PhoneNumber">{{error}}</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" ng-class="{ 'has-error' : CustomersCtx.currentCustomer.errors.Email && actionCompleted == true}">
+                    <label for="Email" class="control-label">{{"customers.LABEL_EMAIL" | translate}}</label>
+                    <input type="text" ng-model="CustomersCtx.currentCustomer.Email" class="form-control" placeholder="{{'global.FACULTATIVE' | translate}}" />
+                    <ul ng-show="CustomersCtx.currentCustomer.errors.Email && actionCompleted == true" class="help-block">
+                        <li ng-repeat="error in CustomersCtx.currentCustomer.errors.Email">{{error}}</li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-primary btn-lg"
+                data-ng-click="CustomersCtx.AddCustomer()">
+            <span translate="{{modalOptions.actionButtonText}}"></span>
+        </button>
+        <button type="button" class="btn btn-default btn-lg"
+                data-ng-click="modalOptions.close()">
+            <span translate="{{modalOptions.closeButtonText}}"></span>
+        </button>
+    </div>
+    <pos-spinner delay="3000" show="actionInProgress"></pos-spinner>
+</div>

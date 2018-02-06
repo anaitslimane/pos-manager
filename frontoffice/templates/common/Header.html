@@ -1,0 +1,40 @@
+﻿<div class="navbar-header">
+    <button type="button" class="navbar-toggle"
+            data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" ui-sref="home">
+        <span id="pos-logo">
+            <span class="glyphicon glyphicon-home" style="font-size: 16px; margin-right: 10px;"></span>
+            POS Manager
+        </span>
+
+        <img src="media/imgs/letter-p-symbol.png" id="pos-logo-sm">
+    </a>
+    <!--<div class="navbar-brand language-select-link"
+         ng-controller="PosNavController as NavCtx"
+         ng-click="NavCtx.DiplayLanguageSwitchModal()"
+         popover-trigger="mouseenter"
+         popover-placement="bottom"
+         uib-popover="{{'directives.language-selector.LANGAGE' | translate}}">
+        <span class="fa fa-language" style="font-size: 16px; margin-left: 4px;">
+            {{NavCtx.currDisplayLocale}}
+        </span>
+    </div>-->
+</div>
+
+<div class="navbar-collapse collapse" collapse="navbarProperties.isCollapsed" ng-controller="PosLoginController as LoginCtx">
+    <ul class="nav navbar-nav">
+        <li><a ui-sref="products/home/" data-toggle="collapse" data-target=".navbar-collapse.in" back-to-top>{{"nav.PRODUCTS" | translate}}</a></li>
+        <li><a ui-sref="packages/home/" data-toggle="collapse" data-target=".navbar-collapse.in" back-to-top>{{"nav.PACKAGES" | translate}}</a></li>
+        <li><a ui-sref="customers/home/" data-toggle="collapse" data-target=".navbar-collapse.in" back-to-top>{{"nav.CUSTOMERS" | translate}}</a></li>
+        <li><a ui-sref="saleoperations/home/" data-toggle="collapse" data-target=".navbar-collapse.in" back-to-top>{{"nav.SALEOPERATIONS" | translate}}</a></li>
+        <li><a ui-sref="products/offerable/" data-toggle="collapse" data-target=".navbar-collapse.in" back-to-top>{{"nav.OFFERABLE_PRODUCTS" | translate}}</a></li>
+    </ul>
+    <pos-current-user on-click-sign-out-btn="LoginCtx.OnClickSignOut()"
+                      on-click-sign-in-btn="LoginCtx.OnClickSignIn()">
+    </pos-current-user>
+</div>

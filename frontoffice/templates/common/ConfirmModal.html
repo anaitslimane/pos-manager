@@ -1,0 +1,24 @@
+﻿<div id="confirm-modal">
+    <div class="modal-header">
+        <h3 translate="{{modalOptions.headerText}}"></h3>
+    </div>
+    <div class="modal-body">
+        <p class="confirm-message" translate="{{modalOptions.bodyText}}"></p>
+		<p class="confirm-entity-name label label-info" 
+			  style="font-size: 1.3em;margin-left:10px" 
+			  ng-show="modalOptions.actionParams.Name">
+			
+			{{modalOptions.actionParams.Name}}
+		</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger"
+                data-ng-click="modalOptions.ok()">
+            <span translate="{{modalOptions.actionButtonText}}"></span>
+        </button>
+        <button type="button" class="btn-default btn"
+                data-ng-click="modalOptions.close()">
+            <span translate="{{modalOptions.closeButtonText}}"></span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,163 @@
+﻿<div id="confirm-sale-payment" class="cart-sale" ng-controller="PosCartController as CartCtx">
+    <div class="modal-header">
+        <h3 translate="{{modalOptions.headerText}}"></h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <button id="btn-get-back"
+                class="btn btn-lg btn-fancy"
+                type="button"
+                data-ng-click="modalOptions.close()"
+                popover-trigger="mouseenter"
+                popover-placement="left"
+                uib-popover="{{'cart.BTN_GET_BACK_TO_SALE' | translate}}"
+                style="margin-left: 3px;"
+                back-to-top
+                >
+            <i class="glyphicon glyphicon-share-alt">
+            </i>
+        </button>
+
+        <div id="cart-header">
+            <div id="current-customer-label">
+                {{"cart.LABEL_CUSTOMER" | translate}}:
+            </div>
+            <div id="current-customer" class="current-customer">
+                <div>
+                    <span>
+                        {{CartCtx.currentSelectedCustomer.Name}}, {{CartCtx.currentSelectedCustomer.FamilyName}}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div id="cart-products-list-container"  ng-show="CartCtx.currentProducts.length > 0">
+            <h4>{{"cart.LABEL_SELECTED_PRODUCTS" | translate}}</h4>
+            <ul id="cart-products-list" class="list-group">
+                <li ng-model="CartCtx.currentProducts"
+                    ng-show="CartCtx.currentProducts.length > 0"
+                    class="list-group-item cart-item"
+                    ng-repeat="product in CartCtx.currentProducts | PosUnique:'Id' | orderBy:'Name'">
+                    <div class="badge-wrapper pull-left">
+                        <span class="badge badge-product" count="product.Count" pos-shake>
+                            x {{product.Count}}
+                        </span>
+                    </div>
+
+                    <div class="cart-item-name">
+                        {{product.Name}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="cart-packages-list-container" ng-show="CartCtx.currentPackages.length > 0">
+            <h4>{{"cart.LABEL_SELECTED_PACKAGES" | translate}}</h4>
+            <ul id="cart-packages-list" class="list-group">
+                <li ng-model="CartCtx.currentPackages"
+                    ng-show="CartCtx.currentPackages.length > 0"
+                    class="list-group-item cart-item"
+                    ng-repeat="package in CartCtx.currentPackages | PosUnique:'Id' | orderBy:'Name'">
+                    <div class="badge-wrapper pull-left">
+                        <span class="badge badge-product" count="package.Count">
+                            x {{package.Count}}
+                        </span>
+                    </div>
+
+                    <div class="cart-item-name">
+                        {{package.Name}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="cart-plans-added-container" ng-show="CartCtx.AddedPlans.length > 0">
+            <h4>{{"cart.LABEL_SELECTED_PLANS" | translate}}</h4>
+            <ul id="cart-plan-types-list" class="list-group">
+                <li ng-model="CartCtx.AddedPlans"
+                    ng-show="CartCtx.AddedPlans.length > 0"
+                    class="list-group-item cart-plan-type cart-item"
+                    ng-repeat="plan in CartCtx.AddedPlans">
+                    <div class="badge-wrapper pull-left">
+                        <span class="badge badge-product">x 1</span>
+                    </div>
+                    <div class="plan-type-name cart-item-name">
+                        {{plan.PlanType.Name}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Offered Products list -->
+        <div id="cart-products-list-container" ng-show="CartCtx.CartService.GetAllCurrentBonusOfferedProducts().length > 0">
+            <h4>
+                <span class="bonus-offered-product-label">{{"cart.LABEL_SELECTED_OFFERED_PRODUCTS" | translate}}</span>
+            </h4>
+            <ul id="cart-products-list" class="list-group">
+                <li ng-model="CartCtx.currentBonusOfferedProducts"
+                    ng-show="CartCtx.currentBonusOfferedProducts.length > 0"
+                    class="list-group-item cart-item"
+                    ng-repeat="bonusProduct in CartCtx.currentBonusOfferedProducts | PosUnique:'ProductId' | orderBy:'Name'"
+                    >
+                    <div class="badge-wrapper pull-left">
+                        <span class="badge badge-product" count="bonusProduct.Product.Count">
+                            x 1
+                        </span>
+                    </div>
+
+                    <div class="cart-item-name">
+                        {{bonusProduct.Product.Name}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!--<div id="cart-products-list-container" ng-show="CartCtx.currentOfferedProducts.length > 0">
+            <h4>{{"cart.LABEL_SELECTED_OFFERED_PRODUCTS" | translate}}</h4>
+            <ul id="cart-products-list" class="list-group">
+                <li ng-model="CartCtx.currentOfferedProducts"
+                    ng-show="CartCtx.currentOfferedProducts.length > 0"
+                    class="list-group-item cart-item"
+                    ng-repeat="product in CartCtx.currentOfferedProducts | PosUnique:'Id' | orderBy:'Name'">
+                    <div class="badge-wrapper pull-left">
+                        <span class="badge badge-product">
+                            x 1
+                        </span>
+                    </div>
+
+                    <div class="cart-item-name">
+                        {{product.Name}}
+                    </div>
+                </li>
+            </ul>
+        </div>-->
+
+        <div id="total-amount-calculus">
+            <div class="final-calculus">
+                <p>
+                    {{CartCtx.CartService.GetSubTotalAmount()}}
+                </p>
+                <p>
+                    - {{CartCtx.CartService.GetDiscountsAmount()}}
+                </p>
+                <p class="total-amount-wrapper">
+                    <span class="calculus-amount-label total-amount-label">
+                        {{"cart.LABEL_TOTAL" | translate}}:
+                    </span>
+                    <span class="total-amount">
+                        {{CartCtx.CartService.GetPriceToPay() | currency}}
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer text-center">
+        <button class="btn btn-success btn-block btn-large-if-lg-1200"
+                data-ng-click="CartCtx.OnConfirmPaymentClicked(); modalOptions.close();"
+                >
+            <span translate="{{modalOptions.actionButtonText}}"></span>
+            <i class="glyphicon glyphicon-print">
+            </i>
+        </button>
+    </div>
+    <pos-spinner delay="3000" show="actionInProgress"></pos-spinner>
+</div>
